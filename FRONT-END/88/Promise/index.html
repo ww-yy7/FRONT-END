@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="./promise.js"></script>
+</head>
+
+<body>
+  <script>
+    // let p1 = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve("OK");
+    //   }, 1000);
+    // });
+    // let p2 = Promise.resolve("success");
+    // let p3 = Promise.resolve("oh yeah");
+
+    // //调用all方法
+    // //let result = Promise.all([p1, p2, p3]);
+    // //console.log(result);
+
+    // //调用race方法
+    // let result = Promise.race([p1, p2, p3]);
+
+    // console.log(result);
+
+      //Promise.reject
+      //   const p = Promise.reject("Error");
+      //   const p2 = Promise.reject(
+      //     new Promise((resolve, reject) => {
+      //       resolve("ok");
+      //     })
+      //   );
+      //   console.log(p);
+      //   console.log(p2);
+      //const p = Promise.resolve("ok");
+      //   //实例化对象
+      //   let p = new Promise((resolve, reject) => {
+      //     // 异步任务;
+      //     setTimeout(() => {
+      //       reject("OK");
+      //       //   reject("error");
+      //     }, 1000);
+      //   });
+
+      //   p.then((value) => {
+      //     console.log(111);
+      //   })
+      //     .then((value) => {
+      //       console.log(111);
+      //     })
+      //     .then((value) => {
+      //       console.log(111);
+      //     })
+      //     .catch((reason) => {
+      //       console.warn(reason);
+      //     });
+
+      //   let p = new Promise((resolve, reject) => {
+      //     // 异步任务;
+      //     setTimeout(() => {
+      //     //   resolve("OK");
+      //         reject("error");
+      //     }, 1000);
+
+      //     //同步任务
+      //     // resolve("OK");
+      //     // reject("error");
+      //   });
+
+      //   const res = p.then(
+      //     (value) => {
+      //       return "onye";
+      //       //   console.log(value);
+      //       //   return "hello Promise";
+      //       //   return new Promise((resolve, reject) => {
+      //       //     resolve("success");
+      //       //   });
+
+      //       //抛出异常
+      //       //   throw "FAIL";
+      //     },
+      //     (reason) => {
+      //       console.warn(reason);
+      //     }
+      //   );
+      //   console.log(res);
+  </script>
+</body>
+
+</html>

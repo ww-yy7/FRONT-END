@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //数组
+        var arr = new Array;//利用new创建了一个空的数组
+        var arr = [];//利用数组字面量创建数组[]
+        var arr = [1, 2, 3];//数据要用逗号相隔，数据类型没有限制
+        console.log(arr[1]);//获取数组元素：数组名[索引]，索引号从0开始的
+        for (var i = 0; i < arr.length; i++) {   //动态检测数组长度，数组名.length
+            console.log(arr[i]);
+        }// 遍历数组，用循环
+        //求数组中的值和平均数
+        var sum = 0;
+        var arr1 = [2, 6, 1, 7, 4];
+        for (var i = 0; i < arr1.length; i++) {
+            sum += arr1[i];
+        }
+        console.log(sum, sum / arr.length);//输出多个变量，用逗号分隔
+        //求数组中的最小值
+        var arr2 = [2, 6, 1, 77, 52, 99, 7];
+        var min = arr[0];
+        for (var i = 1; i < arr2.length; i++) {
+            if (min > arr2[i]) {
+                min = arr2[i];
+            }
+        }
+        console.log(min);
+        //将数组转换为字符串
+        var arr3 = ['red', 'green', 'blue', 'pink'];
+        var str = '';
+        var sep = '!';
+        for (var i = 0; i < arr3.length; i++) {
+            str += arr3[i] + sep;
+        }
+        console.log(str);
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

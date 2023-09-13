@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 500px;
+        margin: 100px auto;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      td,
+      th {
+        border: 1px solid #333;
+      }
+
+      thead tr {
+        height: 40px;
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <table cellspacing="0">
+      <thead>
+        <tr>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+  <script>
+    //1.先去准备好学生的数据
+    var datas = [
+      {
+        name: "1",
+        subject: "1",
+        score: 100,
+      },
+      {
+        name: "2",
+        subject: "1",
+        score: 100,
+      },
+      {
+        name: "3",
+        subject: "1",
+        score: 100,
+      },
+      {
+        name: "4",
+        subject: "1",
+        score: 100,
+      },
+    ];
+
+    //2.往tbody里面创建行：有几个人创建几行
+    var tbody=document.querySelector('tbody');
+    for(var i=0;i<datas.length;i++){
+        var tr=document.createElement('tr');
+        tbody.appe
+    }
+  </script>
+</html>

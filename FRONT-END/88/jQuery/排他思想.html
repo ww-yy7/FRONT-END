@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!--     <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button> -->
+    <script>
+      /*       //1.获取所有按钮元素
+    var btns = document.getElementsByTagName("button");
+    //btns得到的是伪数组  里面的每一个元素是btns[i]
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].onclick = function () {
+        //(1)我们把所有的按钮背景颜色去掉
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].style.backgroundColor = "";
+        }
+        //(2)然后我们把当前颜色背景变为pink
+        this.style.backgroundColor = "pink";
+      };
+    } */
+    </script>
+    <div class="wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="j_cbAll" checked="checked" /></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="j_tb">
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      //1.全选和取消全选的做法
+      var j_cbAll = document.getElementById("j_cbAll");
+      var j_tbs = document.getElementById("j_tb").getElementsByTagName("input");
+      //注册事件
+      j_cbAll.onclick = function () {
+        //this.checked 它可以得到当前复选框的选中状态，如果是true,就是选中
+        for (var i = 0; i < j_tbs.length; i++) {
+          j_tbs[i].checked = this.checked;
+        }
+      };
+      //2.下面的全选，第一个就选中
+      for (var i = 0; i < j_tbs.length; i++) {
+        j_tbs[i].onclick = function () {
+          //flag控制全选按钮是否选中
+          var flag = true;
+          for (var i = 0; i < j_tbs.length; i++) {
+            if (!j_tbs[i].checked) {
+              flag = flase;
+              break; //退出for循环，提高执行效率
+            }
+          }
+          j_cbAll.checked = flag;
+        };
+      }
+    </script>
+  </body>
+</html>

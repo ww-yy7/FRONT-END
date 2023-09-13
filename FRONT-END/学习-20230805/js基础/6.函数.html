@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* //函数
+        //function:声明函数的关键字，函数名一般是动词，函数不调用不执行
+        function 函数名(形参1, 形参2) {
+        }
+        函数名(实参1, 实参2);
+        //函数的返回值格式
+        function 函数名() {
+            return 需要返回的结果;
+        }
+        函数名();//函数名（）=return 后面的值
+        function getMax() {
+            var max = arr[0];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        var re = getMax([5, 2, 99]);//实参是一个数组送过去
+        console.log(re);//在我们实际开发中，我们经常用以个变量来接受函数的返回结果
+        //return 后面的函数不会被执行，return只能返回一个值，所以可以返回一个数组 */
+
+        //arguments对象存储了传递的所有实参
+        function fn() {
+            console.log(arguments);
+            console.log(arguments.length);
+            //我们可以按照数组的方式遍历arguments
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+        fn(1, 2, 3);
+        //伪数组 并不是真正意义上的数组：
+        //1.具有数组的length属性；2.按照索引的方式进行存储的
+        //3.没有数组的一些方法pop(),push()等等
+
+        //利用函数求任意个数的最大值
+        function getMax() {
+            var max = arguments[0];
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        console.log(getMax(1, 2, 3, 4, 8));
+        //翻转函数 reverse,排序函数sort:冒泡排序
+        function sort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - i - 1; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + i] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        var arr1 = sort([1, 5, 4, 8, 10]);
+        console.log(arr1);
+        //函数是可以相互调用的
+        function fn1() {
+            fn();  //在fn1函数里面调用了fn2函数
+        }
+        function fn() {
+        }
+
+        //案例：用户输入年份，输出当前年份2月份的天数
+        function backDay() {
+            var year = prompt('请您输入年份');
+            if (isRunYear()) { //调用函数需要加小括号
+                alert('当前年份是闰年2月份有29天');
+            }
+            else {
+                alert('当前年份是平年2月份有28天')
+            }
+        }
+        backDay();
+
+        //判断是否为闰年的函数
+        function isRunYear(year) {
+            var flag = false;
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                flag = true;
+            }
+            return flag;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

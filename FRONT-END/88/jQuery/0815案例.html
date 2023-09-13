@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      //将另外一个页面的输入值索引过来
+      console.log(location.search); //?uname=andy
+      //1.先去掉?
+      var params = location.search.substr(1); //uname=andy  substr截取字符
+      console.log(params);
+      //2.利用=字符串把数组分割
+      var arr = params.split("=");
+      console.log(arr);
+      var div = document.querySelector("div");
+      //把数据写入div
+      div.innerHTML = arr[1] + "欢迎您";
+    </script>
+  </body>
+</html>

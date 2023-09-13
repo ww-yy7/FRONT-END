@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+            top: 2px;
+        }
+
+        .con {
+            display: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 鼠标移动事件:mousemove -->
+    <!-- <img src="奶茶.png" alt=""> -->
+    <input type="text">
+    <div class="search">
+        <div class="con">
+            123
+        </div>
+        <input type="text" placeholder="请输入快递单号" class="jd">
+
+    </div>
+    <script>
+        //案例1：图片跟着鼠标移动
+        /*         var pic = document.querySelector('img');
+                document.addEventListener('mousemove', function (e) {
+                    //1.只要移动鼠标，mousemove就会被触发
+                    //console.log(1);
+                    var x = e.pageX;
+                    var y = e.pageY;
+                    //console.log('x的坐标是' + x, 'y的坐标是' + y);
+                    pic.style.left = x - 100 + 'px';
+                    pic.style.top = y - 100 + 'px';
+                })
+         */
+        //案例2：按下s，定位到搜索框
+        var search = document.querySelector('input');
+        document.addEventListener('keyup', function (e) {   //用keydown是按下的就会触发，所以用keyup,键盘弹起的时候触发
+            if (e.keyCode == 83) {
+                search.focus();
+            }
+        })
+
+        //京东快递单号查询
+        var con = document.querySelector('.con');
+        var jd_input = document.querySelector('.jd')
+        jd_input.addEventListener('keyup', function () {   //keydown在文本框里的特点是，事件触发时，文字没有落入文本框里
+            console.log(1);
+            if (this.value == '') {
+                con.style.display = 'none';
+            } else {
+                con.style.display = 'block';
+                con.innerText = this.value;
+            }
+        })
+        //失去焦点时候，隐藏con这个盒子
+        jd_input.addEventListener('blur', function () {
+            con.style.display = 'none';
+        })
+        jd_input.addEventListener('focus', function () {
+            if (this.value != '') {
+                con.style.display = 'block';
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 10 == 3) {
+                continue;
+            }
+            sum += i;
+        }
+        console.log(sum);
+        //九九乘法表（正三角形也这样）
+        /*         var str = '';
+                for (var i = 1; i <= 9; i++) {//外层循环控制行数
+                    for (var j = 1; j <= i; j++) {//里层循环控制每一行的个数
+                        //1×2=2
+                        str += j + 'x' + i + '=' + i * j + '\t';// \t是水平制表符
+                    }
+                    str += '\n';
+                }
+                console.log(str);
+         */
+
+
+        // for (let i = 1; i <= 5; i++) {
+        //     let row = '';
+        //     for (let j = 1; j <= 5 - i; j++) {
+        //         row += ' ';
+        //     }
+        //     for (let k = 1; k <= 2 * i - 1; k++) {
+        //         row += '*';
+        //     }
+        //     console.log(row);
+        // }
+
+
+
+        /* //for 循环
+        for (初始化变量; 条件表达式; 操作表达式) {
+            //循环体
+        }
+        for (var i = 1; i <= 100; i++) {
+            console.log('峰峰真帅');
+        }
+
+        //双重for循环
+        for (外层的初始化变量; 外层的条件表达式; 外层的操作表达式) {
+            for (; ;) {
+                //执行语句
+            }
+        }
+        for (var i = 1; i < 3; i++) {
+            console.log('这是外层循环第' + i + '次');
+            for (var j = 1; j < 3; j++) {
+                console.log('这是内层循环第' + j + '次');
+            }
+        }
+
+        //while循环语法结构 
+        while (条件表达式) {
+            //循环体
+        }
+        var num = 1;
+        while (num <= 100) {
+            console.log('你好呀');
+            num++;
+        }
+        //do while 循环语法结构
+        do {
+            //循环体
+        } while (条件表达式)
+
+        //continue,break关键字
+        //continue是退出当前循环，继续循环，break是跳出整个循环
+
+        var sum = 0;
+        var average = 0;
+        var num = prompt('请输入班级的总人数');
+        for (var i = 1; i <= num; i++) {
+            var score = prompt('请您输入第' + i + '个学生成绩');
+            sum = sum + parseFloat(score);//从prompt里面取得数据是字符串型，需要转换为数字型
+        }
+        average = sum / num;
+        alert('班级的总成绩是：' + sum);
+        alert('班级平均分是：' + average) */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

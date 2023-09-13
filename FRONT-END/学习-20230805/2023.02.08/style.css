@@ -1,0 +1,326 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.w {
+    width: 1200px;
+    margin: auto;
+}
+
+body {
+    background: #f3f5f7;
+}
+
+li {
+    /* 清楚li里面的点 */
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 清除浮动 */
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* 头部 */
+.header {
+    height: 42px;
+    /* 注意此地方会层叠w里面的margin */
+    margin: 30px auto;
+}
+
+/* logo部分 */
+.logo {
+    /* 加浮动 */
+    float: left;
+    width: 198px;
+    height: 42px;
+}
+
+.nav {
+    float: left;
+    margin-left: 60px;
+}
+
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    /* 行元素转化为块元素 */
+    display: block;
+    height: 42px;
+    /* 用padding撑开盒子，不用固定盒子的大小 */
+    padding: 0 10px;
+    line-height: 42px;
+    font-size: 18px;
+    color: #050505;
+}
+
+/* 伪类选择器hover，给链接加特殊效果 */
+.nav ul li a:hover {
+    border-bottom: 2px solid #00a4ff;
+    color: #00a4ff;
+}
+
+/* 搜索模块 */
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    margin-left: 70px;
+}
+
+.search input {
+    float: left;
+    width: 345px;
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: 0;
+    color: #bfbfbf;
+    font-size: 14px;
+    padding-left: 15px;
+}
+
+.search button {
+    float: left;
+    width: 50px;
+    height: 42px;
+    background-color: blue;
+    /* 手动去掉button的边框 */
+    border: 0;
+    background: url(images/btn.png);
+}
+
+.user {
+    float: right;
+    line-height: 42px;
+    margin-right: 30px;
+    font-size: 14px;
+    color: #666666;
+}
+
+/* 图片文字垂直居中 */
+.user img {
+    vertical-align: middle;
+}
+
+.banner {
+    height: 421px;
+}
+
+.banner .w {
+    height: 421px;
+    background: url(images/zhongli.jpg);
+    background-repeat: no-repeat;
+}
+
+.subnav {
+    float: left;
+    width: 190px;
+    height: 421px;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.subnav ul li {
+    height: 45px;
+    line-height: 45px;
+    padding: 0 25px;
+}
+
+.subnav ul li a {
+    font-size: 14px;
+    color: #fff;
+
+}
+
+.subnav ul li a span {
+    float: right;
+}
+
+.subnav ul li a:hover {
+    color: #ffaa00;
+}
+
+.like {
+    float: right;
+    width: 230px;
+    height: 300px;
+    background-color: rgba(0, 0, 0, .3);
+    /* 浮动的盒子不会有外边距合并的问题 */
+    margin-top: 45px;
+}
+
+.like h2 {
+    height: 48px;
+    background-color: rgba(0, 0, 0, .4);
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    color: #fff
+}
+
+.zhongli {
+    padding: 0 20px;
+
+}
+
+.like ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid grey;
+}
+
+.like ul li h4 {
+    padding-bottom: 5px;
+    font-size: 19px;
+    color: #fff;
+    /* text-align: center; */
+
+}
+
+.like ul li p {
+    font-size: 17px;
+    color: #fff;
+    /* text-align: center; */
+}
+
+.like .darling {
+    display: block;
+    height: 38px;
+    border: 1px solid orange;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 38px;
+    color: #f3f5f7;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 精品推荐模块 */
+.goods {
+    height: 60px;
+    background-color: #fff;
+    margin-top: 10px;
+    box-shadow: 0 4px 3px 3px rgba(0, 0, 0, .3);
+    /* 行高会继承给下面 */
+    line-height: 60px;
+}
+
+.goods h3 {
+    float: left;
+    margin-left: 30px;
+    font-size: 16px;
+    color: #000;
+
+}
+
+.goods ul {
+    float: left;
+    margin: 0 30px;
+}
+
+.goods ul li {
+    float: left;
+}
+
+.goods ul li a {
+    padding: 0 20px;
+    border-left: 1px solid grey;
+    font-size: 16px;
+    color: rgb(173, 64, 13);
+}
+
+.goods ul li a:hover {
+    color: rgb(4, 4, 84);
+
+}
+
+.mod {
+    float: right;
+    margin-right: 30px;
+    font-size: 14px;
+    color: rgb(214, 112, 112);
+}
+
+.box {
+    margin-top: 30px;
+}
+
+.box-hd {
+    height: 45px;
+    background-color: rgba(160, 210, 226, .3);
+    line-height: 45px;
+}
+
+.box .box-hd h3 {
+    float: left;
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.box .box-hd a {
+    float: right;
+    margin-right: 30px;
+    font-size: 12px;
+    color: #666666;
+}
+
+/* 把ul的宽度修改足够宽,li就不会被挤下来换行 */
+.box-pd ul {
+    width: 1300px;
+}
+
+.box-pd ul li {
+    float: left;
+    width: 592.5px;
+    height: 300px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.box-pd ul li img {
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    height: 410px;
+    background-color: #fff;
+}
+
+.footer .w {
+    padding-top: 10px;
+}
+
+.wenzi p {
+    float: left;
+    width: 500px;
+    height: 400px;
+    line-height: 400px;
+    font-size: 25px;
+    text-align: right;
+    font-weight: 700;
+    color: rgb(3, 91, 50);
+}
+
+.tupian img {
+    float: right;
+    width: 700px;
+    height: 400px;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //创建数组的两种方式
+        //检测是否为数组：instanceof; Array.isArray()
+        //添加删除数组元素的方法
+        //1.push()
+        var arr = [1, 2, 3];
+        arr.push(4, 'pink');
+        console.log(arr);
+        //2.unshift:在数组的前面添加
+        //3.pop()删除数组最后一个元素
+        //4.shift()删除数组的第一个元素
+
+        //筛选数组
+        var arr = [1500, 3000, 2000, 1800, 1300];
+        var newArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] < 2000) {
+                newArr.push(arr[i]);
+            }
+        }
+        console.log(newArr);
+
+        //翻转数组
+        var arr1 = ['red', 'pink', 'blue'];
+        arr1.reverse();
+        console.log(arr1);
+        //冒泡排序
+        var arr2 = [1, 90, 6, 9, 10];
+        arr2.sort(function (a, b) {
+            //return a - b;//升序的顺序排序
+            return b - a;//降序的顺序排序
+        });
+        console.log(arr2);
+
+        //数组的索引方法，返回数组索引号方法
+        console.log(arr1.indexOf('pink'));//找不到该元素，返回的是-1
+        console.log(arr1.lastIndexOf('pink'));//倒着找
+
+        //数组去重：有一个数组['c','a','z','a','x','a','x','c','b'],要求去除数组中重复的元素
+        //核心算法：我们遍历旧数组，然后拿着旧数组去查询新数组，如果该元素在新数组中有的话，就不添加
+        //封装一个去重的函数
+        function unique(arr) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (newArr.indexOf(arr[i]) === -1) {
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        var demo = unique(['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b']);
+        console.log(demo);
+
+        //数组转换为字符串
+        //1.toString()将数组转换为字符串
+        //2.join(分隔符)包装成为看复杂数据类型
+        // （1）把简单数据类型包装成复杂数据类型
+        var temp = new String('andy');
+        //(2)把临时变量的值给Str
+        str = temp;
+        // (3)销毁这个临时变量
+        temp = null;
+
+        // 基本包装类型：简单数据类型
+
+        //字符串的不可变性
+        //字符串对象 根据字符返回位置 str.indexOf('要查找的字符'，[起始位置])
+
+        //根据位置返回字符：charAt(index)，index:字符索引号
+
+        //charCodeAt(index) 获取指定位置处字符的ASCII码
+        //str[index]获取指定位置处字符
+
+        //字符串操作方法
+        //1.concat('字符串1','字符串2'...)
+        var str = 'andy';
+        console.log(str.concat('red'));
+        //2.substr('截取的起始位置','截取几个字符')
+        console.log(str.substr(2, 2));
+        //3.替换字符replace('被替换的字符','替换为的字符')
+        console.log(str.replace('a', 'b'));
+        //4.字符串转换为数组split('分隔符')
+
+        //toUpperCase()转换为大写
+        function convertToUpperCase(letter) {
+            var upperCaseLetter = letter.toUpperCase();
+            return upperCaseLetter;
+        }
+
+        //toLowerCase()转换为小写
+        function convertToLowerCase(letter) {
+            var LowerCaseLetter = letter.toLowerCase();
+            return LowerCaseLetter;
+        }
+
+
+
+
+    </script>
+</head>
+
+
+<body>
+
+</body>
+
+</html>

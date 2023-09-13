@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <style>
+      .nav {
+        height: 100px;
+        width: 100px;
+        background-color: purple;
+      }
+      ul li {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <video src="mov.mp4"></video>
+    <div>
+        <script>
+        $("div").hide();
+      </script> -->
+    <!-- </div> -->
+    <div class="nav"></div>
+    <ul>
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+    </ul>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <script>
+      // 1.等着整个页面DOM加载完毕去执行js代码
+      //   $(document).ready(function () {
+      //     $("div").hide();
+      //   });
+
+      // 2.等着整个页面DOM加载完毕去执行js代码
+
+      //3.jQuery的顶级对象:$
+
+      //DOM对象：原生JS获取过来的对象
+      //jQuery对象：用jQuery获取过来的对象，两种夫人属性和方法不能混用
+      //转换：①DOM对象转换为jQuery对象
+      //   var myvideo = document.querySelector("video");
+      //   $(myvideo);
+      //②jQuery转换为DOM:2钟方法：$('video')[0].play()或者$('video').get(0).play()
+
+      //常见API
+      //1.基本选择器和层级选择器
+      //   $(function () {
+      //     console.log($(".nav"));
+      //     console.log($("ul li"));
+      //   });
+      //   //隐式迭代：一起改样式
+      //   $(".nav").css("background", "pink");
+
+      //筛选方法（重点）：
+      //   $(function () {
+      //     //1.父级parent(),返回的是最近一级的父级元素，亲爸爸
+      //     console.log($(li).parent());
+      //     //2.子，:亲儿子选择器children(),所有的孩子,包括儿子和孙子：find()
+      //     $(".nav").find("p").css("background", "pink");
+      //   });
+      //选取第n个元素
+      // $(function () {
+      //   //$("ul li :eq(2)").css("color", "pink");
+      //   $("ul li").eq(2).css("color", "blue");
+      // });
+
+      //排他思想
+      $(function () {
+        //隐式迭代，给所有的按钮都绑定了点击事件
+        $("button").click(function () {
+          //   //2.当前的元素变化背景颜色
+          //   $(this).css("background", "pink");
+          //   //3.其余的兄弟去掉背景颜色，隐式迭代
+          //   $(this).siblings("button").css("background", "");
+          // 链式编程，简单优雅、
+          $(this).css("color", "pink").siblings().css("color", "");
+        });
+      });
+
+      //操作样式值css方法:
+      $("div").css("width", "300px"); //属性名一定要加引号，数字不用加引号也许，如 $("div").css("width", "300")
+      //多组对象：
+      $("div").css({
+        height: 400, //逗号分隔，属性名和属性值冒号隔开，属性可以不用加引号
+        backgroundColor: "pink",
+      });
+
+      //设置类样式方法,里面的类名不要加点
+      //1.添加类
+      $("div").addClass("current"); //相当于追加类名，不影响以前的类名
+      //2.移除类
+      $("div").removeClass("current");
+      //3.切换类
+      $("div").toggleClass("current");
+
+      //jQuery 效果
+      //1.显示隐藏效果：show([speed,[easing],[fn]])，hide([speed,[easing],[fn]])
+      //speed：slow,normal,fast,默认是normal,也可以是表示动画市场的毫秒数值，（如：1000）；
+      //easing:用来知道切换效果，默认是'swing',也可以用参数'linear'
+      //fn:回调函数，在动画完成时执行的函数，每个元素执行一次。
+
+      //animate(params,[speed,[easing],[fn]])
+
+      //设置或获取本身自带的属性：element. prop()
+      //attr()设置或获取元素自定义属性值
+      //数据缓存data(),这个里面的数据是存放在元素的内存里面
+
+      //checked()可以查找所有被选中复选框的个数
+
+      // jQuery 内容文本值  html():元素的内容    只有文本：text()  表单里的值val()
+      //parents('指定的父级')：可以返回所有的祖先    .toFixed（2）（保留两位小数）
+
+      //jQuery遍历元素
+      $(function () {
+        $("div").each(function (index, domEle) {
+          //语法1
+          //回调函数第一个参数是索引号，可以自己指定索引号名称
+          //回调函数第二个参数一定是dom对象，dom对象没有css方法
+        });
+        $.each(object, function (index, element) {
+          xxx;
+        });
+      });
+
+      //语法2：
+
+      //创建元素：$(<li></li>);添加元素：1.内部添加：element.append(li);内部的最后面   2.外部添加 element.after()或者element.before()
+      //内部添加元素，生成之后是父子关系，外部添加元素，生成之后是兄弟关系
+      //删除元素：element.remove() 删除匹配的元素   element.empty() 删除匹配元素里面的子节点  element.html(" ")  删除匹配元素里面的子节点
+
+      //元素大小：width()/heigth():只包括匹配元素的宽度和高度  innerWidth()  包含padding   outerWidth()包含padding，border
+      //outerWidth(true):包含padding,border,margin  参数为空获取相应值，参数为数字，则是修改相应值，参数可以不用写单位
+
+      //jQuery 事件注册$("div").click(function(){事件处理程序})
+      //事件处理on：一个或者多个事件
+      // $("div").on({
+      //   mouseenter: function () {},
+      //   click: function () {},
+      // });
+      //on可以实现事件委托,on可以给动态创建的元素绑定事件
+      $(function () {
+        $("ul").on("click", "li", function () {
+          alert(11);
+        });
+      });
+      //off()解绑事件
+      //自动触发事件
+
+      //对象拷贝
+      $.extend([deep], target, object1, [objectN]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击</button>
+    <form action="0815案例.html">
+      用户名:<input type="text" name="uname" />
+      <input type="submit" value="登录" />
+    </form>
+    <!-- BOM概述:浏览器对象模型,顶级对象是window。BOM比DOM大 -->
+    <script>
+      console.dir(window); //查看window的属性
+
+      //window.onload事件，窗口加载事件，文档内容完全加载完成后会出发该事件，可以把js代码写到任意地方
+      //只能写一个，如果写了多个，就执行后面的那一条，解决方案：加监听函数
+      /*       window.onload = function () {
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", function () {
+          alert("111");
+        });
+      }; */
+
+      //加监听函数,addEventListener无限制
+      window.addEventListener("load", function () {
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", function () {
+          alert("111");
+        });
+      });
+      //不用等页面全部加载完毕，包含页面dom元素，加载更快一点
+      document.addEventListener("DOMContentLoaded", function () {
+        alert(33);
+      });
+
+      //调整窗口大小的事件  resize
+      //innerWidth:当前屏幕的尺寸
+
+      //定时器：setTimeout():语法规范：window.setTimeout(调用函数，延时时间)：window可以省略,单位是毫秒，可以省略
+      /*       setTimeout(function () {
+        console.log("时间到了");
+      }, 2000); */
+      //调用函数可以直接写函数
+      function callback() {
+        console.log("爆炸了");
+      }
+      //setTimeout(callback, 3000);
+      //页面中有很多定时器，加标识符
+      var timer1 = setTimeout(callback, 3000);
+      var timer2 = setTimeout(callback, 5000);
+
+      //停止定时器：clearTimeout()
+      //定时器：setInterval()  反复调用一个函数，每隔一段时间，去调用
+
+      //this 指向问题
+      //1.全局作用域或者普通函数以及定时器中指向window
+      //2.方法调用的this指向谁：调用者
+      //3.构造函数中的this指向构造函数的实例
+
+      //location:获取或者设置窗体的URL  herf,search   重点记住
+
+      //navigator 对象
+
+      //history 对象
+    </script>
+  </body>
+</html>

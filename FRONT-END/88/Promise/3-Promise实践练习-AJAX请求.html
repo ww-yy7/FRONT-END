@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise 封装 AIAX</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="page-header">Promise 封装 AIAX操作</h2>
+      <button class="btn btn-primary" id="btn">点击发送AJAX</button>
+    </div>
+    <script>
+      //获取元素对象
+      const btn = document.querySelector("#btn");
+      //   btn.addEventListener("click", function () {
+      //     //1.创建对象
+      //     const xhr = new XMLHttpRequest();
+      //     //2.初始化
+      //     xhr.open("GET", "http://127.0.0.1:5500/88/miss.html");
+      //     //3.发送
+      //     xhr.send();
+      //     //4.处理响应结果
+      //     xhr.onreadystatechange = function () {
+      //       if (xhr.readyState === 4) {
+      //         //判断响应状态码 2xx
+      //         if (xhr.status >= 200 && xhr.status < 300) {
+      //           //控制台输出响应体
+      //           console.log(xhr.response);
+      //         } else {
+      //           //控制台输出响应状态码
+      //           console.log(xhr.status);
+      //         }
+      //       }
+      //     };
+      //   });
+
+      btn.addEventListener("click", function () {
+        const p = new Promise((resolve, reject) => {
+          //1.创建对象
+          const xhr = new XMLHttpRequest();
+          //2.初始化
+          xhr.open("GET", "http://127.0.0.1:5500/88/miss.html");
+          //3.发送
+          xhr.send();
+          //4.处理响应结果
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              //判断响应状态码 2xx
+              if (xhr.status >= 200 && xhr.status < 300) {
+                //控制台输出响应体
+                resolve(xhr.response);
+              } else {
+                //控制台输出响应状态码
+                reject(xhr.status);
+              }
+            }
+          };
+        });
+        p.then(
+          (value) => {
+            console.log(value);
+          },
+          (reason) => {
+            console.warn(reason);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>

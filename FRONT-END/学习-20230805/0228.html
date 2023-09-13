@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            /* 模糊处理，数值越大，越模糊 */
+            filter: blur(15px);
+        }
+
+        img:hover {
+            filter: blur(0);
+        }
+
+        .father {
+            width: 100px;
+            height: 200px;
+            background-color: purple;
+            /* 想要写多个属性，用逗号隔开 */
+            /* transition: width 1s, height 1s; */
+            /* 如果想要多个属性都变化，属性写all就可以了 */
+            /* 谁做过渡谁加transition */
+            transition: all o.5s;
+        }
+
+        .son {
+            /* width: 150px; */
+            /* width: calc(150px + 30px); */
+            width: calc(100% - 30px);
+            height: 30px;
+            background-color: blue;
+        }
+
+        /* transtion:要过度的属性 花费时间(单位是秒，比如0.5s) 
+        运动曲线(默认ease) 何时开始（单位是秒，比如0.5s）,最后两个可以省略 */
+        .father:hover {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 进度条 */
+        .bar {
+            width: 150px;
+            height: 15px;
+            border: 1px solid red;
+            border-radius: 7px;
+            padding: 1px;
+        }
+
+        .bar_in {
+            width: 50%;
+            height: 100%;
+            background-color: red;
+            transition: all 1s;
+        }
+
+        .bar:hover .bar_in {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="222.jpg" alt="">
+    <div class="father">
+        <div class="son">
+        </div>
+    </div>
+    <div class="bar">
+        <div class="bar_in">
+
+        </div>
+    </div>
+</body>
+
+</html>

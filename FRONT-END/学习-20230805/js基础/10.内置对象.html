@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //内置对象：Math,Date,Array,String等  
+        //Math数学对象 不是一个构造函数，所以不需要new来调用，而是直接使用里面的属性和方法即可
+        console.log(Math.PI);
+        console.log(Math.max(1, 99, 3));
+        //案例：利用对象封装自己的数学对象。里面有PI最大值和最小值
+        var mymath = {
+            PI: 3.141592653,
+            max: function () {
+                var max = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    if (arguments[i] > max) {
+                        max = arguments[i];
+                    }
+                }
+                return max;
+            }
+        }
+        console.log(mymath.PI);
+
+        //Date（）日期对象，是一个构造函数，必须使用new来调用创建我们的日期对象
+        var arr = new Array();
+        var obj = new Object();
+        //1.使用Date
+        var date = new Date();
+        console.log(date);
+        //2.参数常用的写法：数字型 2019，10，01或者是字符串型：'2019-10-1 8：8：8'
+        var date1 = new Date(2019, 10, 1);
+        console.log(date1);
+        var date2 = new Date('2019-10-1 8:8:8');
+        console.log(date2);
+        //日期格式化 年月日，时分秒
+        var date3 = new Date();
+        console.log(date3.getFullYear());
+        console.log(date3.getMonth() + 1);//返回的月份比月份小1，所以要加上1
+        console.log(date3.getHours());// 返回时
+        //要求封装一个函数返回当前的时分秒，格式08：08：08
+        function getTime() {
+            var time = new Date();
+            var h = time.getHours();
+            h = h < 10 ? '0' + h : h;//三元运算符，补全前面的0
+            var m = time.getMinutes();
+            m = m < 10 ? '0' + m : m;
+            var s = time.getSeconds();
+            s = s < 10 ? '0' + s : s;
+            return h + ':' + m + ':' + s;
+        }
+        console.log(getTime());
+
+        //获得Date总的毫秒数(时间戳)，不是当前的毫秒数，而是距离1970年1月1日的毫秒数
+        //1.通过valueOf() getTime()
+        console.log(date3.valueOf());
+        //2.简单的写法
+        var date4 = +new Date();
+        console.log(date4);
+        console.log(Date.now());
+        //倒计时效果：用将的时间减去现在的时间就是剩余的时间
+        //转换公式如下：
+        //计算天数
+        //h=parsenInt(总秒数/60/60%24);//计算小时数
+        //m=parsenInt(总秒数/60%60);//计算分数数
+        //s=parsenInt(总秒数%60);//计算秒数
+        function counttDown(time) {
+            var nowTime = +new Date();
+            var inputTime = +new Date(timr);
+            var times = (inputTime - nowTime) / 1000;
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

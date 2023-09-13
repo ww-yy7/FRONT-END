@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        position: absolute;
+        width: 200px;
+        height: 100px;
+        left: 0;
+        background-color: pink;
+        border: 10px solid red;
+        padding: 10px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      1111 11 11 1 111 111 11 111111 11111 11 1 11111 111 111 11111 111111111
+      111111 11 11 1111 111 11111 111111 11 111 11111 111 1111111 111111
+      1111111111 1111 1111111111 1111
+    </div>
+    <script>
+      //client 元素可视区，和offset的区别是，client不包含边框
+      var div = document.querySelector("div");
+      console.log(div.clientTop); //元素上边框的大小
+      console.log(div.clientLeft); //元素左边框的大小
+      console.log(div.clientWidth); //包括padding,内容区的宽度，不含边框，不包含数值
+      console.log(div.clientHeight); //同上，是高度
+
+      //scroll系列:滚动事件滚动的距离  scrollTop,scrollLeft
+      div.addEventListener("scroll", function () {
+        console.log(div.scrollHeight);
+        console.log(div.scrollTop);
+      });
+      //页面被卷去的头部：可以通过window.pageYOffset获得
+
+      //mouseover和mouseenter的区别   ：mouseenter只有经过自己的盒子出发，不会冒泡  mouseleave离开
+
+      //动画函数封装
+      //核心原理：定时器setInterval不断移动盒子位置 ，元素需要添加定位：步骤
+      //1.获得盒子当前位置,2.加移动距离，利用定时器重复这个操作，加结束定时器的条件
+      function animate(obj, target) {
+        obj.timer = setInterval(function () {
+          if (obj.offsetLeft >= target) {
+            clearInterval(obj.timer);
+          }
+          obj.style.left = obj.offsetLeft + 5 + "px";
+        }, 30);
+      }
+      //调用函数
+      animate(div, 300);
+
+      //缓动效果：核心算法：（目标值-现在的位置）/10
+      function animate(obj, target) {
+        obj.timer = setInterval(function () {
+          // 步长值改成整数，往上取整，Math.cell
+          //var step = Math.ceil((target - obj.offsetLeft) / 10);
+          var step = (target - obj.offsetLeft) / 10;
+          step > 0 ? Math.ceil(step) : Math.floor(step);
+          if (obj.offsetLeft == target) {
+            clearInterval(obj.timer);
+          }
+          obj.style.left = obj.offsetLeft + step + "px";
+        }, 15);
+      }
+
+      //mouseleave mouseenter
+    </script>
+  </body>
+</html>

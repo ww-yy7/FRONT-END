@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //预解析
+        //1.JS引擎运行分两步：预解析和代码执行
+        //(1）预解析：JS引擎会把JS里面所有的var还有function提升到当前作用域的最前面
+        //(2) 代码执行：按照代码书写的顺序从上往下执行
+        //2.预解析分为变量预解析（变量提升）和函数预解析（函数提升）
+        //(1)变量提升：就是把所有的变量声明提升到当前的作用域最前面，不提升赋值操作
+        //(2)函数提升：就是把所有的函数声明提升到当前作用域的最前面，不调用函数
+        //案例
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function f1() {
+            var a = b = c = 9;
+            //相当于var a = 9; b = 9; c = 9;b和c直接赋值，是全局变量
+            //集体声明：var a = 9, b = 9, c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+        //相当于以下代码
+        //函数提升到最前面
+        /*         function f1() {
+                    var a;
+                    a = 9;
+                    b = 9;
+                    c = 9;
+                    console.log(a);
+                    console.log(b);
+                    console.log(c);
+                }
+                f1();
+                console.log(c);
+                console.log(b);
+                console.log(a); */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

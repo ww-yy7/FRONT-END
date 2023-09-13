@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+    <script>
+        var div = document.querySelector('div');
+
+        //1.获取元素的属性值:(1).element.属性值)   (2)element.getAttribute('属性')
+        console.log(div.id);
+        console.log(div.getAttribute('id'));
+        // element:内置属性   element.getAttribute('属性')：主要获得我们自定义的属性
+
+        //2.设置元素属性值：  (1)element.属性='值'   (2)element.setAttribute('属性'， '值')主要针对我们自定义属性
+        div.id = 'test';
+        div.setAttrribute('class', 'navs')   //class特殊，不用className
+
+        // 3.移除属性  removeAttribute(属性)
+        div.removeAttribute('id');
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

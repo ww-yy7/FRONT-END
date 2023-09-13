@@ -1,0 +1,86 @@
+.main {
+  width: 980px;
+  height: 455px;
+  margin-left: 220px;
+  margin-top: 10px;
+}
+.focus {
+  position: relative;
+  width: 720px;
+  height: 455px;
+  overflow: hidden;
+}
+.focus ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600%;
+}
+.focus ul li {
+  float: left;
+}
+.focus ul li img {
+  width: 720px;
+  height: 455px;
+}
+.arrow-l,
+.arrow-r {
+  display: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  width: 24px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  font-family: "icomoon";
+  font-size: 18px;
+  z-index: 2;
+}
+.arrow-r {
+  right: 0;
+}
+.circle {
+  position: absolute;
+  bottom: 0;
+  /* 这里别给ol限制宽度，让小圆圈的个数自动把ol撑大 */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 10%;
+  line-height: 10%;
+  text-align: center;
+}
+.circle li {
+  float: left;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  margin-left: 5px;
+}
+.circle .current {
+  background-color: #fff;
+}
+.newsflash {
+  float: right;
+  width: 250px;
+  height: 455px;
+}
+
+.news {
+  height: 125px;
+  background-color: pink;
+}
+
+.lifeservice {
+  margin-top: 10px;
+  height: 209px;
+  background-color: greenyellow;
+}
+.newsflash img {
+  margin-top: 10px;
+  height: 100px;
+  width: 250px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <ul>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+      <li>我是li</li>
+    </ul>
+    <ol>
+      <li>我是li1</li>
+      <li>我是li2</li>
+      <li>我是li3</li>
+      <li>我是li4</li>
+      <li>我是li5</li>
+    </ol>
+    <div class="demo">
+      <div class="box">
+        <span class="erweima"> 1 </span>
+      </div>
+    </div>
+
+    <script>
+      //1. 父节点 parentNode
+      var erweima = document.querySelector(".erweima"); //注意有一个.
+      //var box=document.querySelector('.box'); 也可以这样写
+      console.log(erweima.parentNode); //得到的是离元素最近的父级节点,如果找不到就返回为null
+
+      //DOM提的方法获取（API）
+      var ul = document.querySelector("ul");
+      var li = ul.querySelector("li");
+      //2.1 子节点  parentNode.childNodes  (包括所有的节点，元素节点，文本节点)
+      console.log(ul.childNodes);
+      //如果需要获得里面的元素节点，需要专门处理，一般不提倡用childNodes
+      //2.2 children:获取所有的子元素节点
+      console.log(ul.children);
+
+      // 3.获取第一个子元素和最后一个子元素
+      var ol = document.querySelector("ol");
+      // firstChild (lastChild)第一个子节点，不管是文本的还是元素节点，但是firstElementChild可以获取元素节点
+      console.log(ol.firstChild);
+      console.log(ol.firstElementChild);
+      //实际开发的写法：既没有兼容性问题又返回第一个子元素
+      console.log(ol.children[0]);
+      console.log(ol.children[ol.children.length - 1]);
+
+      // 兄弟节点：nextSibling得到的是下一个兄弟节点  previousSibling上一个兄弟节点，nextElementSibling:下一个兄弟元素节点
+
+      //添加新元素步骤：1.创建节点 documrnt.creatElement('');  2.添加节点：node.appendChild(child)后面添加，node.insertBefore(child,指定元素)
+      var li1 = document.createElement("li");
+      var ul = document.querySelector("ul");
+      ul.appendChild(li1);
+      ul.insertBefore(li1, ul.children[0]);
+
+      //删除节点：node.removeChild(child)
+      ul.removeChild(ul.children[1]);
+
+      //复制节点：node.cloneNode():括号为空或false，不复制里面的内容，true为深拷贝
+      var lili = ol.children[3].cloneNode(true);
+      ol.appendChild(lili);
+    </script>
+  </body>
+</html>

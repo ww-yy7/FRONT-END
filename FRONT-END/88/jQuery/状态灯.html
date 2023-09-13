@@ -1,0 +1,78 @@
+<template>
+  <div class="shijie-circle" :class="{ 'shijie-circle-normal': isConnent }">
+    <div></div>
+  </div>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        isConnent: true,
+      };
+    },
+    created() {
+      // 发送请求
+
+      setInterval(() => {
+        this.loopConnent();
+      }, 3000);
+    },
+    methods: {
+      loopConnent() {
+        // 创建一个XMLHttpRequest对象
+        const xhr = new XMLHttpRequest();
+
+        // 指定请求的方法和URL
+        xhr.open(
+          "GET",
+          "https://mock.mengxuegu.com/mock/64ccab8e686aea63fd6b5909/example/mock_copy",
+          true
+        );
+
+        // 注册一个回调函数，处理请求完成后的操作
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // 请求成功，处理返回的数据
+            const responseData = JSON.parse(xhr.responseText);
+            this.isConnent = Boolean(responseData.data.value);
+          } else {
+            // 请求失败，处理错误信息
+            console.error("Request failed:", xhr.status, xhr.statusText);
+          }
+        };
+
+        // 注册一个回调函数，处理请求错误
+        xhr.onerror = function () {
+          console.error("Request error");
+        };
+        xhr.send();
+      },
+    },
+  };
+</script>
+<style scoped>
+  .shijie-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 1px solid red;
+  }
+
+  .shijie-circle > div {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: red;
+  }
+
+  .shijie-circle.shijie-circle-normal {
+    border-color: green;
+  }
+
+  .shijie-circle.shijie-circle-normal > div {
+    background-color: green;
+  }
+</style>

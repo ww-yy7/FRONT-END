@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两面翻转的盒子</title>
+    <style>
+        body {
+            perspective: 350px;
+        }
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 100px auto; 
+            transition: all .4s;  
+            /* 让紫色的盒子保留立体空间 */
+            transform-style: preserve-3d;                  
+        }
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+        .front,
+        .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            font-size: 30px;
+            color: #fff;
+            text-align: center;
+            line-height: 300px;
+            /* backface-visibility: hidden; 是CSS中的一个属性，其作用是控制一个元素的背面是否可见，如果设置为 hidden，则表示其背面不可见。
+            一般情况下，当一个元素被旋转或者翻转之后，它的背面会被暴露出来，如果我们想要隐藏背面，可以使用 backface-visibility: hidden;。
+            这个属性的主要作用是优化渲染性能，因为当使用 transform 属性来旋转元素时，如果没有设置 backface-visibility 属性，
+            浏览器会默认渲染元素的反面，这样会导致不必要的消耗，而设置 backface-visibility: hidden; 后可以避免这种情况。 */
+            backface-visibility: hidden;
+        }
+        .front {
+            background-color: pink;
+            /* z-index 属性设定了一个定位元素及其后代元素或 flex 项目的 z-order。
+            当元素之间重叠的时候，z-index 较大的元素会覆盖较小的元素在上层进行显示。 */
+            z-index: 1;  
+            /* 这个属性可以触发元素的硬件加速。硬件加速可以把元素的动画效果变得更加流畅，同时也可以避免一些问题，比如抖动、延迟等。 */
+            transform: translateZ(1px);
+        }
+        .back {
+            background-color: purple;
+            /* 向手机一样，背靠背旋转 */
+            transform: rotateY(180deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="front">黑马程序员</div>
+        <div class="back">111</div>
+    </div>
+</body>
+</html>

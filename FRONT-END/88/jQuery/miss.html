@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        margin: 300px 500px;
+        height: 110px;
+        width: 190px;
+        background-color: rgba(255, 192, 203, 0.5);
+        padding: 10px;
+      }
+      span {
+        float: left; /* 加了浮动，并排显示 */
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        line-height: 50px; /* 和盒子高度一样，就可以实现文字水平居中 */
+        margin-left: 10px; /* 实现相邻盒子的距离 */
+      }
+      .miss {
+        float: left;
+        width: 170px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <span class="miss">和峰峰见面倒计时：</span>
+      <span class="hour"></span>
+      <span class="minute"></span>
+      <span class="second"></span>
+    </div>
+    <script>
+      var hour = document.querySelector(".hour");
+      var minute = document.querySelector(".minute");
+      var second = document.querySelector(".second");
+      var inputTime = +new Date("2023-08-15 20:00:00"); //返回的是用户输入事件总的秒数，拿到外面去，方便修改
+      countDown();
+      //开启定时器
+      setInterval(countDown, 1000);
+      function countDown() {
+        var nowTime = +new Date(); //返回当前事件的总的毫秒数
+        var times = (inputTime - nowTime) / 1000; //剩余时间的秒数
+        var h = parseInt((times / 60 / 60) % 24); //当前的小时数
+        h = h < 10 ? "0" + h : h;
+        hour.innerHTML = h; //把剩余的小时数给黑色盒子
+        var m = parseInt((times / 60) % 60); //分
+        m = m < 10 ? "0" + m : m;
+        minute.innerHTML = m;
+        var s = parseInt(times % 60); //秒
+        s = s < 10 ? "0" + s : s;
+        second.innerHTML = s;
+      }
+    </script>
+  </body>
+</html>

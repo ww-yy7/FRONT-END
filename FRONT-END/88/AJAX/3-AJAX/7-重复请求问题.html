@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: solid 1px #90b;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击发送</button>
+    <script>
+        //获取元素
+        const btns = document.querySelectorAll("button");
+        let xhr = null;
+        let isSending = false;//是否正在发送AJAX请求
+        //绑定事件
+        btns[0].onclick = function () {
+            if (isSending) xhr.abort();//如果正在发送，则取消该请求，创建一个新的请求
+            //1.创建对象
+            xhr = new XMLHttpRequest();
+            isSending = true;
+            xhr.open("GET", "http://127.0.0.1:8000/delay");
+            //发送
+            xhr.send();
+            //事件绑定：处理服务端返回的结果
+            //readystate是xhr对象中的属性，表现状态0 1 2 3 4
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    isSending = false;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

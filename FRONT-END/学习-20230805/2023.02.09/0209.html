@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0209</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .views {
+            position: relative;
+            width: 639px;
+            height: 355px;
+            margin: 100px auto;
+        }
+
+        .views img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask {
+            /* 隐藏遮罩层 */
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .4) url(btn.png) no-repeat center;
+        }
+
+        /* 鼠标经过，让里面的遮罩层就显示出来 */
+        .views:hover .mask {
+            display: block;
+        }
+
+        /* 并集选择器可以集体声明相同的样式 */
+        .prev,
+        .next {
+            position: absolute;
+            /* 垂直居中两步走 */
+            top: 50%;
+            margin-top: -15px;
+            /* 加了绝对定位的盒子可以设置高度和宽度 */
+            width: 20px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, .3);
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .prev {
+            left: 0;
+            /* 设置右上右下圆角 */
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .next {
+            /* 如果一个盒子既有left属性也有right属性，则默认会执行left属性，同样的先top后bottom。 */
+            right: 0;
+            /* 设置左上左下圆角 */
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .spot {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            margin-left: -35px;
+            width: 70px;
+            height: 13px;
+            /* 白色半透明 */
+            background-color: rgba(255, 255, 255, .3);
+            border-radius: 13px;
+        }
+
+        .spot li {
+            float: left;
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 3px;
+        }
+
+        .spot .one {
+            background-color: #ff5000;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="views">
+        <div class="mask"></div>
+        <img src="666.jpg" alt="">
+        <!-- 左侧按钮箭头 -->
+        <a href="" class="prev">
+            &lt; </a>
+        <!-- 右侧按钮箭头 -->
+        <a href="" class="next">&gt</a>
+        <!-- 底部小圆点 -->
+        <ul class="spot">
+            <li class="one"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

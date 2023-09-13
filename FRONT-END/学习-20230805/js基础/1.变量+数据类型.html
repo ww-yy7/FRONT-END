@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //课后作业
+        var name = prompt('您的姓名是：'),
+            age = prompt('您的年龄是：'),
+            agenda = prompt('您的性别是：');
+        var str = '您的姓名是：' + name +
+            '\n您的年龄是:' + age +
+            '\n您的性别是:' + agenda;
+        alert(str)
+
+        /*         //1.更新变量
+                var myname = 'pink老师';
+                console.log(myname);
+                myname = '迪丽热巴';
+                console.log(myname);
+                //2.声明多个变量,中间用逗号相隔
+                var age = 18,
+                    address = '火影村',
+                    gz = 2000;
+                //3.声明变量的特殊情况
+                //3.1只声明不赋值
+                var sex;
+                console.log(sex);//undefined
+                //3.2不声明 不赋值 直接用某个变量会报错的
+                console.log(tel);
+                //不声明直接赋值使用
+                qq = 110;
+                console.log(qq); */
+
+        /*         //数据类型
+                //js的变量数据类型是只有程序在运行过程中，根据等号右边的值来确定的
+                //js是动态语言，变量的数据类型是可以变化的
+                var num = 10;//数字型
+                var str = '是的';//字符串型
+                var x = 10;//x是数字型
+                x = 'pink';//x是字符串型
+                console.log(Number.MAX_VALUE);//最大值
+                console.log(Number.MIN_VALUE);//最小值
+                console.log(NaN);//NaN表示无法被表示为数字的值
+                //isNaN()这个方法用来判断非数字，并且返回一个值，如果是数字返回的是false,如果不是数字，返回的是true
+                console.log(isNaN(12));//false
+                console.log(isNaN('pink老师'));//true
+        
+                //1.检测字符串长度：length
+                var str = 'my name is andy';
+                console.log(str.length);//15
+                //2.字符串拼接“+”，数值相加，字符相连
+                console.log('沙漠' + '骆驼');//沙漠骆驼
+        
+                //例子
+                var age = prompt('请输入您的年龄');//弹出输入框，让用户输入年龄（用户输入）
+                var str = '您今年已经' + age + '岁了';//保存用户输入变量，并拼接字符串（程序内部处理）
+                alert(str);//使用alert语句弹出警示框（输出结果）
+        
+                //undefined 
+                var variable = undefined;
+                console.log(variable + 1);//NaN:undefined和数字相加，最后的结果是NaN */
+
+        /*        //获取变量数据类型   typeof
+               var num = 10;
+               console.log(typeof num);//number
+               var str = 'pink';
+               console.log(typeof str);//string
+       
+               //数据类型转换
+               //1.转换为字符串：toString(),String(),最重要的是加号拼接字符串（也称为隐式转换）
+               var num = 10;
+               var str = num.toString();//变量.toString
+               console.log(str);
+               console.log(String(num));//String(变量)
+               console.log(num + '');//任何类型和字符串相加都是字符串
+               //2.转换为数字型：parseInt(变量)，parseFloat(变量),
+               var age = prompt('请输入您的年龄');
+               console.log(parseInt(age));//得到的是整数
+               console.log(parseFloat('100%'));//parseFloat(变量)：转换为数字型，得到的是小数、浮点数
+               console.log('12' - 0);//利用了算数运算- * /（隐式转换）
+               //3.转换为布尔型：Boolean(变量)
+               console.log(Boolean(0));//代表空、否定的值会被转换为false,其余为true
+               console.log(Boolean('小白'));//true */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

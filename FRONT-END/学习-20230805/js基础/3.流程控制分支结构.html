@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*         //1.if的语法结构、ifelse、if else if(多分支)
+                if (条件表达式) {
+                    //执行语句1
+                } //执行思路，如果if里面的条件表达式为真，则执行括号里面的
+                else {
+                    //执行语句2
+                }
+                //2.三元表达式
+                // 条件表达式 ？ 表达式1 ：表达式2，真为1，假为2
+                //3.switch语句
+                //开发里，表达式经常写出变量；break如果不写，就不会退出swutch,会执行下一个case
+                switch (表达式) {
+                    case value1:
+                        执行语句1;
+                        break;
+                    case value2:
+                        执行语句2;
+                        break;
+                    default:
+                        执行最后的语句;
+                }
+                //例子
+                var fruit = prompt('请您输入查询的水果');
+                switch (fruit) {
+                    case '苹果':
+                        alert('苹果的价格是3.5元一斤');
+                        break;
+                    case '榴莲':
+                        alert('榴莲的价格是35一斤');
+                        break;
+                    default:
+                        alert('没有此水果');
+                }
+                 */
+        var num = prompt('班长口袋里的钱是多少');
+        switch (true) {
+            case num >= 2000:
+                alert('今天吃西餐');
+                break;
+            case num >= 1500:
+                alert('今天吃快餐');
+                break;
+            case num >= 1000:
+                alert('今天喝饮料');
+                break;
+            case num >= 500:
+                alert('今天吃棒棒糖');
+                break;
+            default:
+                alert('下次把钱带够')
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
