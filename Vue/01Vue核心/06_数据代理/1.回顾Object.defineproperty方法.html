@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.defineproperty</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let person = {
+            name: 'ww',
+            sex: '女'
+        }
+        Object.defineProperty(person, 'age', {
+            value: 18,
+            enumerable: true,  //控制属性是否可以枚举，默认值为false
+            writable: true,    //控制属性是否可以被修改，默认值为false
+            configurable: true, //控制属性是否可以被删除，默认值是false
+            get: function () {  //读取内部调用的函数值
+                return 'hello'
+
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>

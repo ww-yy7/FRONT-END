@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>插值语法</title>
+  <!-- 引入Vue -->
+  <script type="text/javascript" src=" ../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 准备好一个容器 -->
+  <div id="root">
+    <h1>插值语法</h1>
+    <h3>Hello.{{name}}</h3>
+    <!-- <hr/>标签在 HTML 页面中创建一条水平线 -->
+    <hr />
+    <h1>指令语法</h1>
+    <a v-bind:href="school.url">点击送{{school.name.toUpperCase()}}小心心</a>
+    <a :href="school.url">点击送小心心</a>
+    <!-- v-bind  可以简写为 ： -->
+  </div>
+</body>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+
+  new Vue({
+    el: "#root",
+    data: {
+      name: "ww",
+      school: {
+        name: "ff",
+        url: "http://127.0.0.1:5500/%E5%AD%A6%E4%B9%A0-20230805/0210.html",
+      },
+    },
+  });
+</script>
+
+</html>
