@@ -146,6 +146,42 @@
 
 ## 八、计算属性
 
+- 计算属性：
+
+1. 定义：要用的属性不存在，要通过已有属性计算得来。
+2. 原理：底层借助了 Objcet.defineproperty 方法提供的 getter 和 setter。
+3. get 函数什么时候执行？  
+   (1)初次读取时会执行一次。  
+   (2)当依赖的数据发生改变时会被再次调用。
+4. 优势：与 methods 实现相比，内部有缓存机制（复用），效率更高，调试方便。
+5. 备注:计算属性最终会出现在 Vm 上，直接读取使用即可。如果算属性要被多改，那必须写 set 函数去啊应修改，且 set 中要引起计算时依懒的数据发生。
+
+- 计算属性的简写:只考虑读取不考虑修改的时候用简写，因为不用 set
+
+```JS
+fullName: {
+   get() {
+         console.log('get');
+         return this.firstName + '-' + this.lastName
+                },
+   set() {
+         console.log('set', value);
+         const arr = value.split('-')
+         this.firstName = arr[0]
+         this.lastName = arr[1]
+                }
+            }
+```
+
+简写为：
+
+```JS
+fullName(){
+   console.log('get');
+   return this.firstName + '-' + this.lastName
+         },
+```
+
 - 其他知识点： slice() 方法
 
 1. slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
@@ -157,4 +193,16 @@
 var str="Hello world!";
 var n=str.slice(3，8);
 //lo wo
+```
+
+- 其他知识点： split() 方法
+
+1. split() 方法用于把一个字符串分割成字符串数组。
+2. 提示： 如果把空字符串 ("") 用作 separator，那么 stringObject 中的每个字符之间都会被分割。
+3. 注意： split() 方法不改变原始字符串。
+
+```JS
+var str="How are you doing today?";
+var n=str.split("o");
+//结果是：H,w are y,u d,ing t,day?
 ```
