@@ -158,3 +158,60 @@ var str="Hello world!";
 var n=str.slice(3，8);
 //lo wo
 ```
+
+## 九、监视属性
+
+- 监视属性 watch:
+
+1. 被监视的属性变化时，回调函数自动调用，进行相关操作
+2. 监视的属性必须存在，才能进行监视！！
+3. 监视的两种写法：  
+   (1) new Vue 时传入 watch 配置
+   ```JS
+   watch: {
+            isHot: {
+                immediate: true,
+                deep:true //深度监视
+                handler(newValue, oldValue) {
+                }
+            }
+        }
+   ```
+   (2) 通过 vm.$watch 监视
+   ```JS
+       vm.$watch('isHot', {
+        immediate: true,
+        deep:true //深度监视
+        handler(newValue, oldValue) {
+        }
+    })
+   ```
+
+- 深度监视：  
+  (1) Vue 中的 watch 默认不监测对象内部值的改变（一层）。  
+  (2).配置 deep:true 可以监测对象内部值改变（多层）。  
+  备注：  
+  (1)Vue 自身可以监测对象内部值的改变，但 Vue 提供的 watch 默认不可以！  
+  (2)使用 watch 时根据数据的具体结构，决定是否采用深度监视。
+
+- 监视属性的简写:不需要 immediate 和 deep 的时候,不能写箭头函数
+
+  ```JS
+  isHot: {
+        handler(newValue, oldValue) {
+        }
+           }
+
+  vm.$watch('isHot', function(newValue, oldValue){
+       })
+  ```
+
+- 其他知识点
+
+1. computed 和 watch 之间的区别：  
+   (1)computed 能完成的功能，watch 都可以完成。  
+   (2)watch 能完成的功能，computed 不一定能完成，例如：watch 可以进行异步操作。
+
+2. 两个重要的小原则：  
+   (1) 所被 Vue 管理的函数，最好写成普通函数，这样 this 的指向才是 vm 或组件实例对象。  
+   (2)所有不被 Vue 所管理的函数（定时器的回调函数、ajax 的回调函数等），最好写成箭头函数，这样 this 的指向才是 vm 或组件实例对象。
