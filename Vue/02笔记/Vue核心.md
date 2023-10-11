@@ -195,7 +195,6 @@ var n=str.slice(3，8);
 //lo wo
 ```
 
-<<<<<<< HEAD
 - 其他知识点： split() 方法
 
 1. split() 方法用于把一个字符串分割成字符串数组。
@@ -207,7 +206,7 @@ var str="How are you doing today?";
 var n=str.split("o");
 //结果是：H,w are y,u d,ing t,day?
 ```
-=======
+
 ## 九、监视属性
 
 - 监视属性 watch:
@@ -264,4 +263,3 @@ var n=str.split("o");
 2. 两个重要的小原则：  
    (1) 所被 Vue 管理的函数，最好写成普通函数，这样 this 的指向才是 vm 或组件实例对象。  
    (2)所有不被 Vue 所管理的函数（定时器的回调函数、ajax 的回调函数等），最好写成箭头函数，这样 this 的指向才是 vm 或组件实例对象。
->>>>>>> 339880bca0e36c14a299a5cdaeed0ee48d31f1bd
