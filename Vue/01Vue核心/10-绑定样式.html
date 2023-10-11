@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src=" ../js/vue.js"></script>
+    <style>
+        .basic {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .happy {
+            width: 300px;
+            height: 200px;
+            background-color: green;
+        }
+
+        .sad {
+            width: 300px;
+            height: 200px;
+            background-color: blue;
+        }
+
+        .normal {
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root"><!-- 绑定class样式 --字符串写法,适用于：样式的类名不确定，需要动态指定-->
+        <div class="basic" :class="mood" @click="changeMood"> {{name}} </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+
+    new Vue({
+        el: "#root",
+        data: {
+            name: "ww",
+            mood: "normal"
+        },
+        methods: {
+            changeMood() {
+                // this.mood = "happy"
+                //三种心情随便切换
+                const arr = ['happy', 'sad', 'normal']
+                const index = Math.floor(Math.random() * 3)
+                console.log(this.mood);
+                this.mood = arr[index]
+            }
+        }
+    })
+</script>
+
+</html>
