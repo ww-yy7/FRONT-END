@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>key的原理</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="/Vue/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>人员列表</h2>
+        <button @click.once="add">添加一个ff</button>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+
+    const vm = new Vue({
+        el: "#root",
+        data: {
+            persons: [
+                { id: '001', name: 'ww', age: '18' },
+                { id: '002', name: 'ff', age: '20' },
+                { id: '003', name: 'yy', age: '16' }
+            ]
+        },
+        methods: {
+            add() {
+                const p = { id: '004', name: 'ff', age: 20 }
+                this.persons.unshift(p)
+            }
+        },
+    })
+</script>
+
+</html>
