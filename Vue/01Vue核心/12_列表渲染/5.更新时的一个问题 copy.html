@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>更新时的一个问题</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="/Vue/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>人员列表</h2>
+        <button @click="updateM">更新ww信息</button>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            persons: [
+                { id: '001', name: 'wy', age: '18', sex: '女' },
+                { id: '002', name: 'ff', age: '20', sex: '男' },
+                { id: '003', name: 'ycf', age: '16', sex: '男' },
+                { id: '004', name: 'ww', age: '19', sex: '女' },
+            ]
+        },
+        methods: {
+            updateM() {
+                // this.persons[0].name = 'wy1'  //有效
+                this.persons[0] = { id: '001', name: 'wy1', age: '18', sex: '女' }  //vue监测不到
+            }
+        }
+    })
+</script>
+
+</html>

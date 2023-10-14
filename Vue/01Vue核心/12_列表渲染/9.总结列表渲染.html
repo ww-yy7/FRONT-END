@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总结Vue列表渲染</title>
+    <script type="text/javascript" src="/Vue/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>个人信息</h1>
+        <button @click="student.age++">年龄+1</button>
+        <button @click="addSex">添加性别属性</button>
+        <button @click="student.sex='女'">修改性别</button>
+        <button @click="student.girlfriend.name = '宝贝'">修改女朋友的名字为：宝贝</button>
+        <button @click.once="addHobby">添加一个爱好</button>
+        <button @click="changeHobby">修改第一个爱好为：亲亲</button>
+        <h3>姓名：{{student.name}}</h3>
+        <h3>年龄：{{student.age}}</h3>
+        <h3 v-if="student.sex">性别：{{student.sex}}</h3>
+        <h3>爱好：</h3>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">
+                {{h}}
+            </li>
+        </ul>
+        <h3>女朋友的信息：</h3>
+        <h4>姓名：{{student.girlfriend.name}}----年龄：{{student.girlfriend.age}}</h4>
+    </div>
+
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = false;//阻止vue在启动时生成生产提示
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            student: {
+                name: 'ff',
+                age: '18',
+                hobby: ['ww', 'sweety', 'dear', 'moon'],
+                girlfriend: {
+                    name: 'ww',
+                    age: 18
+                }
+            }
+        },
+        methods: {
+            addSex() {
+                Vue.set(this.student, 'sex', '男')
+            },
+            addHobby() {
+                this.student.hobby.push('sport')
+            },
+            changeHobby() {
+                // this.student.hobby.splice(0, 1, '亲亲')
+                Vue.set(this.student.hobby, 0, '亲亲')
+            }
+        }
+
+    })
+
+</script>
+
+</html>

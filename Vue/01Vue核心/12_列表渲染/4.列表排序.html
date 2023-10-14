@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>列表过滤</title>
+    <title>列表排序</title>
     <!-- 引入Vue -->
     <script type="text/javascript" src="/Vue/js/vue.js"></script>
 </head>
@@ -15,6 +15,9 @@
         <!-- 遍历数组 -->
         <h2>人员列表</h2>
         <input type="text" placeholder="请输入名字" v-model="keyWord">
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">原顺序</button>
         <ul>
             <li v-for="(p,index) in filPersons" :key="p.id">
                 {{p.name}}-{{p.age}}-{{p.sex}}
@@ -26,53 +29,31 @@
 <script type="text/javascript">
     Vue.config.productionTip = false; //阻止vue在启动时生成生产提示
 
-    //用watch方法实现
-    //#region
-    /* const vm = new Vue({
-        el: "#root",
-        data: {
-            keyWord: '',
-            persons: [
-                { id: '001', name: 'wy', age: '18', sex: '女' },
-                { id: '002', name: 'ff', age: '20', sex: '男' },
-                { id: '003', name: 'ycf', age: '16', sex: '男' },
-                { id: '004', name: 'ww', age: '18', sex: '女' },
-            ],
-            filPersons: []
-        },
-        watch: {
-            keyWord: {
-                immediate: true,
-                handler(val) {
-                    this.filPersons = this.persons.filter((p) => {
-                        return p.name.indexOf(val) !== -1
-                        // indexOf(String str):
-                        // 返回指定字符在字符串中第一次出现处的索引， 有就是!== -1
-                    })
-                }
-            }
-
-        }
-    }) */
-    //#endregion
-
-    //用computed实现
     new Vue({
         el: '#root',
         data: {
             keyWord: '',
+            sortType: 0,  //0代表原顺序，1代表降序，2是升序
             persons: [
                 { id: '001', name: 'wy', age: '18', sex: '女' },
                 { id: '002', name: 'ff', age: '20', sex: '男' },
                 { id: '003', name: 'ycf', age: '16', sex: '男' },
-                { id: '004', name: 'ww', age: '18', sex: '女' },
+                { id: '004', name: 'ww', age: '19', sex: '女' },
             ]
         },
         computed: {
             filPersons() {
-                return this.persons.filter((p) => {
+                const arr = this.persons.filter((p) => {
                     return p.name.indexOf(this.keyWord) !== -1
                 })
+                //判断一下是否需要排序
+                if (this.sortType) {
+                    arr.sort((p1, p2) => {
+                        return this.sortType === 1 ? p2.age - p1.age : p1.age - p2.age
+                        //p1-p2是升序    ,p2-p1是降序
+                    })
+                }
+                return arr
             }
         }
     })
