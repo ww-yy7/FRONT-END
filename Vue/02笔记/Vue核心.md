@@ -375,3 +375,85 @@ vm.$set(target,propertyName/index,value)
     (1).使用这些 API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()  
     (2)Vue.set()vm.$set()
 5.  特别注意：Vue.set()和 vm.$set()不能给 vm 或者 vm 的根数据对象添加属性
+
+## 十三、收集表单数据
+
+- 若：`<input type="text"/>`,则 v-model 收集的是 value 值，用户输入的就是 value 值。
+- 若：`<input type="radio"/>`,则 v-model 收集的是 value 值，且要给标签配置 value 值。
+- 若：`<input type:="checkbox"/>`
+
+  1. 没有配置 input 的 value 属性，那么收集的就是 checked(勾选 or 未勾选，是布尔值)
+  2. 配置 input 的 value 属性：  
+     (1)v-mode1 的初始值是非数组，那么收集的就是 checked(勾选 or 未勾选，是布尔值)  
+     (2)v-model 的初始值是数组，那么收集的的就是 va1ue 组成的数组
+
+- 备注：v-model 的三个修饰符：  
+   lazy:失去焦点再收集数据  
+   number:输入字符串转为有效的数字  
+   trim:输入首尾空格过滤
+
+## 十四、过滤器
+
+### 时间戳格式化
+
+第三方库：BootCDN：moment.js/day.js  
+Day.js 是一个轻量的处理时间和日期的 JavaScript 库
+
+```JS
+dayjs()
+  .startof('month')
+  .add(1,'day')
+  set('year',2018)
+  format('YYYY-MM-DD HH:mm:ss')
+```
+
+### 过滤器
+
+- 定义：对要显示的数据进行特定格式化后再显示（适用于一些简单逻辑的处理）
+- 语法：
+  1. 注册过滤器：`Vue.filter(name,cal1back)`或` new Vue{fi1ters:{}}`
+  2. 使用过滤器：`{{xxx 丨过滤器名}}`或` v-bind:属性="xxx|过滤器名"`
+- 备注：
+  1. 过滤器也可以接收额外参数、多个过滤器也可以串联
+  2. 并没有改变原本的数据，是产生新的对应的数据
+
+## 十五、内置指令
+
+1. 我们学过的指令：  
+   v-bind:单向绑定解析表达式，可简写为：Xxx  
+   v-model：双向数据绑定  
+   V-for：遍历数组/对象/字符串  
+   V-on：绑定事件监听，可简写为@  
+   V-if：条件渲染（动态控制节点是否存存在）  
+   v-else：件渲染（动态控制节点是否存存在）  
+   v-show：条件渲染（动态控制节点是否展示）
+
+2. v-text 指令
+
+- 作用：向其所在的节点中渲染文本内容
+- 与插值语法的区别：v-text 会替换掉节点中的内容，{{xx}}不会
+
+3. v-html 指令
+
+- 作用：向指定节点中渲染包含 html 结构的内容。
+- 与插值语法的区别：  
+  (1)v-html 会替换掉节点中所有的内容，{{xx}}则不会。  
+  (2)v-html 可以识别 html 结构。
+- 严重注意：v-html 有安全性问题！！！！  
+  (1)在网站上动态渲染任意 HTML 是非常危险的，容易导致 XSS 攻击。  
+  (2)一定要在可信的内容上使用 v-html,永不要用在用户提交的内容上！
+
+4. v-c1oak 指令（没有值）：
+
+- 本质是一个特殊属性，Vue 实例创建完毕并接管容器后，会删掉 v-c1oak 属性。
+- 使用 css 配合 V-c1oak 可以解决网速慢时页面展示出{{xx}}的问题。
+
+5. v-once 指令
+
+- v-once 所在节点在初次动态渲染后，就视为静态内容了
+- 以后数据的改变不会引起 v-once 所在结构的更新，可以用于优化性能。
+
+6. v-pre 指令
+
+- 跳过其所在节点的编译过程
+- 可利用它跳过：没有使用指令语法，没有使用插值语法的节点，会加快编译
