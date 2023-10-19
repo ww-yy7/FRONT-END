@@ -1,6 +1,6 @@
 # Vue 组件化编程
 
-### 模块与组件、模块化与组件化 s
+### 模块与组件、模块化与组件化
 
 1. 模块
 
@@ -72,7 +72,7 @@
 
 - 几个注意点：
 
-  1.  关于组件名：
+  1.关于组件名：
 
   - 一个单词组成：  
     第一种写法（首字母小写）：schoo1  
@@ -84,12 +84,12 @@
     (1).组件名尽可能回避 HTML 中己有的元素名称，例如：h2、H2 都不行。  
     (2).可以使用 name 配置项指定组件在开发者工具中呈现的名字。
 
-  2.  关于组件标签：  
-      第一种写法：`<school></school>`  
-      第二种写法：`<schoo1/>`  
-      备注：不用使用脚手架时，`<schoo1/>`会导致后续组件不能渲染。
-  3.  一个简写方式：  
-      `const school=Vue.extend(options)`可简写为：`const school=options`
+  2. 关于组件标签：  
+     第一种写法：`<school></school>`  
+     第二种写法：`<schoo1/>`  
+     备注：不用使用脚手架时，`<schoo1/>`会导致后续组件不能渲染。
+  3. 一个简写方式：  
+     `const school=Vue.extend(options)`可简写为：`const school=options`
 
 3. 关于 VueComponent:
 
@@ -103,3 +103,8 @@
       data 函数、methods 中的函数、watch 中的函数、computed 中的函数它们的 this 均是 VueComponent 的实例对象
       5.VueComponent 的实例对象，以后简称 vc(也可称之为：组件实例对象)。
       Vue 的实例对象，以后简称 vm
+
+4. 一个重要的内置关系：`VueComponent.prototype.__proto__===Vue.prototype`  
+   为什么要有这个关系：让组件实例对象（vc）可以访问到 Vue 原型上的属性方法
+
+### 单文件组件
