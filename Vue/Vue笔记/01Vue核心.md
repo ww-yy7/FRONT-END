@@ -28,10 +28,10 @@
    写法：{{xxx}},xxx 要写 js 表达式，且 xxx 可以自动读取到 data 中的所有属性；
 2. 指令语法  
    功能：用于解析标签（包括：标签属性，标签体内容，绑定事件）  
-   举例：v-bind:href="xxx"或简写为:href:"xxx",xxx 同样要写 js 表达式，且 xxx 可以自动读取到 data 中的所有属性；
+   举例：`v-bind:href="xxx"`或简写为:`href:"xxx",xxx` 同样要写 js 表达式，且 xxx 可以自动读取到 data 中的所有属性；
 
 - 备注：  
-   Vue 中有很多的指令。且形式都是：v-???，此处 v-bind 为举例
+   Vue 中有很多的指令。且形式都是：`v-???`，此处 v-bind 为举例
 
 ## 三、数据绑定
 
@@ -43,7 +43,7 @@
 - 备注：
 
 1. 双向绑定一般都应用在表单类元素上（如：input、select 等）
-2. v-model:value 可以简写为 v-model,因为 v-model 默认收集的就是 value 值。
+2. `v-model:value` 可以简写为 `v-model`,因为 v-model 默认收集的就是 value 值。
 
 ## 四、el 与 data 的两种写法
 
@@ -101,7 +101,7 @@
 2. Vue 中数据代理的好处：
    更加方便的操作 data 中的数据
 3. 基本原理：
-   通过 Object,defineProperty()把 data 对象中所有属性添加到 vm 上。  
+   通过 `Object,defineProperty()`把 data 对象中所有属性添加到 vm 上。  
     为每一个添加到 vm 上的属性，都指定一个 getter/setter。  
     在 getter,/setter 内部去操作（读/写）data 中对应的属性。
    ![Alt text](image-1.png)
@@ -114,7 +114,7 @@
 2. 事件的回调需要配置在 nethods,对象中，最终会在 vm 上：
 3. methods 中配置的函数，不要用箭头函数！否则 this 就不是 vm 了：
 4. methods 中配置的函数，都是被 Vue 所管理的函数，this 的指向是 vm 或组件实例对象：
-5. @click-="demo”和@click="demo($event)"效果一致，但后者可以传参。
+5. `@click-="demo”`和`@click="demo($event)"`效果一致，但后者可以传参。
 
 ### 2. 事件修饰符
 
@@ -142,7 +142,7 @@
    (1) 配合 kyup 使用：按下修饰键的同时，再按下其他健，随后释放其他键，事件才被触发。  
    (2) 配合 keydown 使用：正常触发事件。
 4. 也可以使用 keyCode 去指定具体的按键（不推荐）
-5. Vue.config.keyCodes.自定义键名=键码，可以去定制按键别名
+5. `Vue.config.keyCodes.`自定义键名=键码，可以去定制按键别名
 
 ## 八、计算属性
 
@@ -184,7 +184,7 @@ fullName(){
 
 - 其他知识点： slice() 方法
 
-1. slice(start, end) 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+1. `slice(start, end) `方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
 2. 使用 start（包含） 和 end（不包含） 参数来指定字符串提取的部分。
 3. start 参数字符串中第一个字符位置为 0, 第二个字符位置为 1, 以此类推，如果是负数表示从尾部截取多少个字符串，slice(-2) 表示提取原数组中的倒数第二个元素到最后一个元素（包含最后一个元素）。
 4. end 参数如果为负数，-1 指字符串的最后一个字符的位置，-2 指倒数第二个字符，以此类推。
@@ -197,7 +197,7 @@ var n=str.slice(3，8);
 
 - 其他知识点： split() 方法
 
-1. split() 方法用于把一个字符串分割成字符串数组。
+1. `split()` 方法用于把一个字符串分割成字符串数组。
 2. 提示： 如果把空字符串 ("") 用作 separator，那么 stringObject 中的每个字符之间都会被分割。
 3. 注意： split() 方法不改变原始字符串。
 
@@ -237,7 +237,7 @@ var n=str.split("o");
 
 - 深度监视：  
   (1) Vue 中的 watch 默认不监测对象内部值的改变（一层）。  
-  (2).配置 deep:true 可以监测对象内部值改变（多层）。  
+  (2)配置 deep:true 可以监测对象内部值改变（多层）。  
   备注：  
   (1)Vue 自身可以监测对象内部值的改变，但 Vue 提供的 watch 默认不可以！  
   (2)使用 watch 时根据数据的具体结构，决定是否采用深度监视。
@@ -267,22 +267,22 @@ var n=str.split("o");
 ## 十、绑定样式
 
 1. c1ass 样式  
-   写法：class:="xXx”XXx 可以是字符串、对象、数组。  
+   写法：`class:="xXx”XXx `可以是字符串、对象、数组。  
    字符串写法适用于: 类名不确定，要动态获取。  
    对象写法适用于： 要绑定多个样式，个数不确定，名字也不确定。  
    数组写法适用于： 要绑定多个样式，个数确定，名字也确定，但不确定用不用
 2. style 样式
-   :style:="{fontsize:Xxx}"其中 Xxx 是动态值。
-   :style="[a,b]"其中 a、b 是样式对象。
+   `:style:="{fontsize:Xxx}"`其中 Xxx 是动态值。
+   `:style="[a,b]"`其中 a、b 是样式对象。
 
 ## 十一、条件渲染
 
 ### v-if 写法：
 
-(1).v-if="表达式”  
-(2).v-else-if="表达式"  
-(3).V-e1se="表达式  
- 适用于：切换频率较低的场景。  
+(1).`v-if="表达式” `
+(2).`v-else-if="表达式" `
+(3).`v-e1se="表达式 `
+适用于：切换频率较低的场景。  
  特点：不展示的 DOM 元素直接被移除。  
  注意：v-if 可以和：v-else-if、v-else 一起使用，但要求结构不能被“打断”。
 
@@ -292,7 +292,7 @@ var n=str.split("o");
  适用于：切换频率较高的场景。  
  特点：不展示的 D0M 元素未被移除，仅仅是使用样式隐藏掉
 
-- 备注：使用 V-if 的时，元素可能无法获取到， 而使用 V-show 一定可以获取到。
+- 备注：使用 v-if 的时，元素可能无法获取到， 而使用 V-show 一定可以获取到。
 
 ## 十二、列表渲染
 
@@ -326,7 +326,7 @@ indexOf() 方法可返回，某个指定的字符串值在字符串中首次出�
 1. indexOf() 方法对大小写敏感！
 2. 如果要检索的字符串值没有出现，则该方法返回 -1。  
    没有是： === -1 或 < 0，有就是： !== -1  
-   写法：stringObject.indexOf(searchvalue,fromindex)
+   写法：`stringObject.indexOf(searchvalue,fromindex)`
 3. 参数  
    searchvalue：必需。规定需检索的字符串值。  
    fromindex： 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
@@ -373,7 +373,7 @@ vm.$set(target,propertyName/index,value)
     (2).重新解析模板，进而更新页面。
 4.  在 Vue 修改数组中的某个元素一定要用如下方法：  
     (1).使用这些 API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()  
-    (2)Vue.set()vm.$set()
+    (2)`Vue.set()` `vm.$set()`
 5.  特别注意：Vue.set()和 vm.$set()不能给 vm 或者 vm 的根数据对象添加属性
 
 ## 十三、收集表单数据
