@@ -1,6 +1,6 @@
 <template>
   <!-- 组件的结构 -->
-  <div class="demo">
+  <div class="school">
     <h2>学校名称：{{ name }}</h2>
   </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 //组件交互相关的代码（数据、方法等）
 export default {
-  name:'MySchool',
+  name: 'MySchool',
   data() {
     return {
       name: "ecust",
@@ -17,9 +17,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 /* 组件的样式 */
-.demo {
-  background-color: #fff;
+.school {
+  background-color: gray;
 }
 </style>
