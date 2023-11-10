@@ -1,8 +1,21 @@
 {
-  "description": "",
+  "description": "学习前端",
   "dependencies": {
     "express": "^4.18.2",
     "fund": "^1.0.0",
-    "volar-service-vetur": "^0.0.14"
-  }
+    "mqtt": "^5.1.4",
+    "socket.io-client": "^4.7.2",
+    "uuid": "^9.0.1",
+    "volar-service-vetur": "^0.0.14",
+    "vue": "^3.3.6",
+    "ws": "^8.14.2"
+  },
+  "name": "front-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

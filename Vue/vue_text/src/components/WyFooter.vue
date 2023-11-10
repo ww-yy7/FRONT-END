@@ -4,7 +4,7 @@
             <input type="checkbox">
         </label>
         <span>
-            <span>已完成0</span>/全部2
+            <span>已完成 {{ doneTotal }} </span> /全部 {{ todos.length }}
         </span>
         <button class="btn btn-danger">清除已完成任务</button>
     </div>
@@ -12,7 +12,17 @@
 
 <script>
 export default {
-    name: 'WyFooter'
+    name: 'WyFooter',
+    props: ['todos'],
+    conputed: {
+        doneTotal() {
+            /* this.todos.reduce((pre,current) => {
+                return pre + (current.done ? 1 : 0)
+            },0) */
+            //  return this.todos.reduce((pre, todo) => pre +todo.done ? 1 : 0 , 0)
+            return 99
+        }
+    }
 }
 </script>
 

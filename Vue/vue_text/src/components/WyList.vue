@@ -1,6 +1,12 @@
 <template>
     <ul class="todo-main">
-        <WyItem v-for="todoObj in todos" :key="todoObj.id" :todo="todoObj" />
+        <WyItem 
+        v-for="todoObj in todos" 
+        :key="todoObj.id" 
+        :todo="todoObj" 
+        :checkTodo="checkTodo" 
+        :deleteTodo="deleteTodo"
+        />
     </ul>
 </template>
 
@@ -9,17 +15,7 @@ import WyItem from './WyItem'
 export default {
     name: 'WyList',
     components: { WyItem },
-    data() {
-        return {
-            todos: [
-                { id: '001', title: '写作业', done: true },
-                { id: '002', title: '喝水', done: false },
-                { id: '003', title: '背单词', done: true }
-            ]
-
-        }
-
-    }
+    props:['todos','checkTodo','deleteTodo']
 }
 </script>
 

@@ -2,9 +2,9 @@
     <div id="root">
         <div class="todo-container">
             <div class="todo-wrap">
-                <Wyheader />
-                <WyList />
-                <WyFooter />
+                <Wyheader :addTodo="addTodo"/>
+                <WyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
+                <WyFooter :todos="todos" />
             </div>
         </div>
     </div>
@@ -19,6 +19,32 @@ import WyFooter from './components/WyFooter.vue'
 export default {
     name: 'App',
     components: { Wyheader, WyList, WyFooter },
+    data() {
+        return {
+            todos: [
+                { id: '001', title: '写作业', done: true },
+                { id: '002', title: '喝水', done: false },
+                { id: '003', title: '背单词', done: true }
+            ]
+        }
+
+    },
+    methods: {
+        //添加一个todo
+        addTodo(todoObj) {
+            this.todos.unshift(todoObj)
+        },
+        //勾选或者取消一个todo
+        checkTodo(id) {
+            this.todos.forEach((todo) => {
+                if(todo.id===id) todo.done=!todo.done
+            })
+        },
+        //删除一个todo
+        deleteTodo(id) {
+            this.todos=this.todos.filter(todo=> todo.id!== id )
+        }
+    }
 
 }
 </script>

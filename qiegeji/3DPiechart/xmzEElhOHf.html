@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html style="height: 100%;width:100%">
+
+<head>
+    <meta charset="utf-8">
+    <title>3D饼图</title>
+</head>
+
+<body style="height: 100%; width:100%">
+    <div id="chart-panel" style="height: 100%;width: 100%"></div>
+    <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+
+    <script type="text/javascript">
+        var dom = document.getElementById("chart-panel");
+        var myChart = echarts.init(dom);
+        var option;
+        var app = {};
+        // 用于生成参数方程的函数getParametricEquation。它接受一些参数来计算曲面的参数方程
+        /*  计算起始比例和结束比例的中间比例值midRatio。
+            将起始比例和结束比例转换为弧度值startRadian和endRadian。
+            如果索引i等于1，则将startRadian设置为0。
+            判断是否只有一个扇形，如果是，则将选中效果isSelected设置为false。
+            根据选中效果和高亮效果的状态，计算在x轴和y轴方向上的位移offsetX和offsetY。
+             */
+        function getParametricEquation(startRatio, endRatio, isSelected, isHovered, k, height, i) {
+            // 计算
+            let midRatio = (startRatio + endRatio) / 2; //起始比例和结束比例的中间比例值
+            let startRadian = startRatio * Math.PI * 2;
+            let endRadian = endRatio * Math.PI * 2;
+            let midRadian = midRatio * Math.PI * 2;
+            if (i === 1) {
+                startRadian = 0;
+                //  endRadian = 1
+            }
+            //console.log('endRatio', startRatio, endRatio);
+            //console.log(midRadian);
+            // 如果只有一个扇形，则不实现选中效果。
+            if (startRatio === 0 && endRatio === 1) {
+                isSelected = false;
+            }
+
+            // 通过扇形内径/外径的值，换算出辅助参数 k（默认值 1/3）
+            // k = typeof k !== 'undefined' ? k : 1 / 3 ;
+            k = 1;
+
+            // 计算选中效果分别在 x 轴、y 轴方向上的位移（未选中，则位移均为 0）
+            let offsetX = isSelected ? Math.cos(midRadian) * 0.1 : 0;
+            let offsetY = isSelected ? Math.sin(midRadian) * 0.1 : 0;
+
+            // 计算高亮效果的放大比例（未高亮，则比例为 1）
+            let hoverRate = isHovered ? 1.05 : 1;
+
+            // 返回曲面参数方程
+            return {
+                u: {
+                    min: -Math.PI,
+                    max: Math.PI * 3,
+                    step: Math.PI / 32,
+                },
+                v: {
+                    min: 0,
+                    max: Math.PI * 2,
+                    step: Math.PI / 20,
+                },
+                x: function (u, v) {
+                    if (u < startRadian) {
+                        return offsetX + Math.cos(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+                    }
+                    if (u > endRadian) {
+                        return offsetX + Math.cos(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+                    }
+                    return offsetX + Math.cos(u) * (1 + Math.cos(v) * k) * hoverRate;
+                },
+                y: function (u, v) {
+                    if (u < startRadian) {
+                        return offsetY + Math.sin(startRadian) * (1 + Math.cos(v) * k) * hoverRate;
+                    }
+                    if (u > endRadian) {
+                        return offsetY + Math.sin(endRadian) * (1 + Math.cos(v) * k) * hoverRate;
+                    }
+                    return offsetY + Math.sin(u) * (1 + Math.cos(v) * k) * hoverRate;
+                },
+                z: function (u, v) {
+                    if (u < -Math.PI * 0.5) {
+                        return Math.sin(u);
+                    }
+                    if (u > Math.PI * 2.5) {
+                        return Math.sin(u);
+                    }
+                    if (i === 0) {
+                        return Math.sin(v) > 0 ? 4 : 1;
+                    }
+                    return Math.sin(v) > 0 ? 1 : -1;
+                },
+            };
+        }
+
+        // 生成模拟 3D 饼图的配置项
+        function getPie3D(pieData, internalDiameterRatio) {
+            let series = [];
+            let sumValue = 0;
+            let startValue = 0;
+            let endValue = 0;
+            let legendData = [];
+            let k =
+                typeof internalDiameterRatio !== 'undefined'
+                    ? (1 - internalDiameterRatio) / (1 + internalDiameterRatio)
+                    : 1 / 3;
+
+            // 为每一个饼图数据，生成一个 series-surface 配置
+            for (let i = 0; i < pieData.length; i++) {
+                sumValue += pieData[i].value;
+                //得到的是遍历的数据值
+                // console.log(pieData[i].value);
+
+                //用于配置一个数据系列（series）的参数。
+                let seriesItem = {
+                    //设置名称
+                    name: typeof pieData[i].name === 'undefined' ? `series${i}` : pieData[i].name,
+                    //数据系列的类型，这里设置为 'surface'，表示曲面图类型。
+                    type: 'surface',
+                    //是否使用参数方程来定义曲面图
+                    parametric: true,
+                    //线框图设置。
+                    wireframe: {
+                        show: false,
+                    },
+                    pieData: pieData[i], //与该数据系列相关的饼图数据。这里将 pieData[i] 赋值给 pieData 属性。
+                    //饼图状态参数
+                    pieStatus: {
+                        selected: false,//是否被选中
+                        hovered: false,//是否被悬停
+                        k: k,   //辅助参数 k 的值。
+                    },
+                };
+                if (typeof pieData[i].itemStyle != 'undefined') {
+                    let itemStyle = {};
+
+                    typeof pieData[i].itemStyle.color != 'undefined' ? (itemStyle.color = pieData[i].itemStyle.color) : null;
+                    typeof pieData[i].itemStyle.opacity != 'undefined'
+                        ? (itemStyle.opacity = pieData[i].itemStyle.opacity)
+                        : null;
+
+                    seriesItem.itemStyle = itemStyle;
+                }
+                series.push(seriesItem);
+            }
+
+            // 使用上一次遍历时，计算出的数据和 sumValue，调用 getParametric 函数，
+            // 向每个 series-surface 传入不同的参数方程 series-surface.parametricEquation，也就是实现每一个扇形。
+            // 这段代码是一个循环，用于对一组数据系列（series）进行遍历，并进行一系列的计算和设置操作。
+            // 具体的操作如下：
+            // 在每次循环中，根据当前数据系列的值（series[i].pieData.value），计算出结束值（endValue），并将其存储起来。
+            // 计算当前数据系列的起始比例（startRatio）和结束比例（endRatio），这里使用了总值（sumValue）来进行归一化计算。
+            // startRatio：起始比例，即当前数据系列的起始值与总值之比。
+            // endRatio：结束比例，即当前数据系列的结束值与总值之比。
+            // 设置当前数据系列的参数方程（parametricEquation），使用 getParametricEquation 函数来计算。
+            // series[i].pieData.startRatio 和 series[i].pieData.endRatio：起始比例和结束比例。
+            // false, false：两个布尔值参数，具体含义需要参考 getParametricEquation 函数的实现。
+            // k：辅助参数 k 的值。
+            // series[i].pieData.value：当前数据系列的值。
+            // i：当前数据系列的索引。
+            // 将当前数据系列的起始值（endValue）赋给下一个数据系列的起始值（startValue），以便下一次循环使用。
+            // 将当前数据系列的名称（series[i].name）添加到图例数据数组（legendData）中，用于后续的图例展示。
+            for (let i = 0; i < series.length; i++) {
+                endValue = startValue + series[i].pieData.value;
+                // console.log(series[i].pieData.value);
+                series[i].pieData.startRatio = startValue / sumValue;
+                series[i].pieData.endRatio = endValue / sumValue;
+                series[i].parametricEquation = getParametricEquation(
+                    series[i].pieData.startRatio,
+                    series[i].pieData.endRatio,
+                    false,
+                    false,
+                    k,
+                    series[i].pieData.value,
+                    i
+                );
+                startValue = endValue;
+                //第一次是4，第二次是8
+                // console.log(startValue);
+
+                legendData.push(series[i].name);
+            }
+
+            // 准备待返回的配置项，把准备好的 legendData、series 传入。
+            let option = {
+                backgroundColor: '#fff',
+                //配置提示框（tooltip）的参数
+                // tooltip: {
+                //     formatter: (params) => {
+                //         if (params.seriesName !== 'mouseoutSeries') {
+                //             return `${params.seriesName
+                //                 }<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${params.color
+                //                 };"></span>${option.series[params.seriesIndex].pieData.value}`;
+                //         }
+                //     },
+                // },
+                //配置图例和3D坐标轴的参数
+                legend: {
+                    data: legendData,
+                    textStyle: {
+                        // color: '#000',
+                        fontSize: 26,
+                    },
+                },
+                xAxis3D: {
+                    min: -1,
+                    max: 1,
+                },
+                yAxis3D: {
+                    min: -1,
+                    max: 1,
+                },
+                zAxis3D: {
+                    min: -1,
+                    max: 1,
+                },
+                grid3D: {
+                    show: false,
+                    boxHeight: 7,//调整3D的高度
+                    //top: '30%',//距离顶部的高度
+                    bottom: '50%',//在页面中间
+                    // light: {   //配置环境光的代码。环境光是一种均匀照射整个场景的光源，不具备方向性。
+                    //     ambient: {
+                    //         // color: "red",//光的颜色
+                    //         intensity: .2 //可以通过设置intensity属性来调整环境光的强度。在该代码中，环境光的强度被设置为0.2。
+                    //     }
+                    // },
+                    viewControl: {
+                        distance: 300, //视距，表示相机与场景中心点的距离。较大的值会使场景看起来更远。
+                        alpha: 25,//视角的横向角度，单位是度。它决定相机相对于场景中心点的水平位置。
+                        beta: 300, //视角的纵向角度，单位是度。它决定相机相对于场景中心点的垂直位置。
+                        autoRotate: false, //是否自动旋转。设置为true时，场景会自动旋转。
+                        damping: 1, //视角变化的阻尼系数。较大的值会使视角变化更缓慢。
+                        zoomSensitivity: 0, //缩放操作的灵敏度。设置为0时禁用缩放操作
+                        rotateSensitivity: [0, 0],//旋转操作的灵敏度，值越大越灵敏。支持使用数组分别设置横向和纵向的旋转灵敏度
+                    },
+                },
+                series: series,
+            };
+            return option;
+        }
+
+        // 传入数据生成 option
+        option = getPie3D(
+            [
+                {
+                    name: '已消除',
+                    value: 4,
+                    itemStyle: {
+                        // opacity: 0.5,
+                        color: '#19DDFF ',
+                    }
+                },
+
+                {
+                    name: '未消除',
+                    value: 9,
+                    itemStyle: {
+                        // opacity: 0.5,
+                        color: '#C4D2D9',
+                    }
+                },
+                // {
+                //     name: '消除',
+                //     value: 3,
+                //     itemStyle: {
+                //         // opacity: 0.5,
+                //         color: '#00FFEF ',
+                //     }
+                // },
+            ],
+            2
+        );
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+    </script>
+</body>
+
+</html>
