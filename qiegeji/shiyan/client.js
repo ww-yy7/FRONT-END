@@ -1,10 +1,13 @@
 const WebSocket = require("ws");
-const ws = new WebSocket("ws://localhost:8080");
+const ws = new WebSocket("ws://2ae2266b.r3.cpolar.top/otis/websocket/pisx11");
 
 // 监听WebSocket连接事件
 ws.addEventListener("open", (event) => {
   console.log("WebSocket连接已经建立");
 });
+ws.onopen = function (event) {
+  ws.send("Hello server!");
+};
 
 // 监听WebSocket消息事件
 ws.addEventListener("message", (event) => {
