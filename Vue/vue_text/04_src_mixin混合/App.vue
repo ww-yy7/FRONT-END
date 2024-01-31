@@ -1,6 +1,7 @@
 <template>
     <div>
         <MyStudent name="ff" sex="男" :age="18" />
+        888
         <hr>
         <MySchool></MySchool>
 

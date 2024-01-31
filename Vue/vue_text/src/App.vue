@@ -2,9 +2,9 @@
     <div id="root">
         <div class="todo-container">
             <div class="todo-wrap">
-                <Wyheader :addTodo="addTodo"/>
+                <Wyheader @addTodo="addTodo"/>
                 <WyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-                <WyFooter :todos="todos" />
+                <WyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"/>
             </div>
         </div>
     </div>
@@ -12,20 +12,17 @@
 
 <script>
 //引入组件
-import Wyheader from './components/Wyheader.vue'
-import WyList from './components/WyList.vue'
-import WyFooter from './components/WyFooter.vue'
+import pubsub from 'pubsub-js'
+import Wyheader from './components/Wyheader'
+import WyList from './components/WyList'
+import WyFooter from './components/WyFooter'
 
 export default {
     name: 'App',
     components: { Wyheader, WyList, WyFooter },
     data() {
         return {
-            todos: [
-                { id: '001', title: '写作业', done: true },
-                { id: '002', title: '喝水', done: false },
-                { id: '003', title: '背单词', done: true }
-            ]
+            todos:JSON.parse(localStorage.getItem('todos'))  || []
         }
 
     },
@@ -41,10 +38,38 @@ export default {
             })
         },
         //删除一个todo
-        deleteTodo(id) {
+        deleteTodo(_,id) {
             this.todos=this.todos.filter(todo=> todo.id!== id )
+        },
+        //全选或者取消全选
+        checkAllTodo(done){
+            this.todos.forEach((todo)=>{
+                todo.done=done
+            })
+        },
+        //清除所有已经完成的todo
+        clearAllTodo(){
+            this.todos=this.todos.filter((todo)=>{
+                return !todo.done
+            })
         }
+    },
+    watch:{
+        todos:{
+            deep:true,
+            handler(value){
+               localStorage.setItem('todos',JSON.stringify(value))
+        },
     }
+    },
+    mounted(){
+        this.$bus.$on('checkTodo',this.checkTodo)
+        this.pubId=pubsub.subscribe('deleteTodo',this.deleteTodo)
+    },
+    beforeUnmount() {
+        this.$bus.$on('checkTodo')
+        pubsub.unsubscribe(this.pubId)
+    },
 
 }
 </script>
@@ -57,22 +82,22 @@ body {
 .btn {
     /* 样式显示为行内块 */
     display: inline-block;
-    padding: 4px 12px;
+    padding: .25rem .75rem;
     margin-bottom: 0;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: .875rem;
+    line-height: 1.25rem;
     text-align: center;
     /* 设置行内块元素的垂直对齐方式 */
     vertical-align: middle;
     cursor: pointer;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
+    box-shadow: inset 0 .0625rem 0 rgba(255, 255, 255, 0.2), 0 .0625rem .125rem rgba(0, 0, 0, 0.05);
+    border-radius: .25rem;
 }
 
 .btn-danger {
     color: #fff;
     background-color: #da4f49;
-    border: 1px solid #bd362f;
+    border: .0625rem solid #bd362f;
 }
 
 .btn-danger:hover {
@@ -85,12 +110,12 @@ body {
 }
 
 .todo-container {
-    width: 600px;
+    width: 37.5rem;
     margin: 0 auto;
 }
 
 .todo-container .todo-wrap {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: .625rem;
+    border: .0625rem solid #ddd;
+    border-radius: .3125rem;
 }</style>
